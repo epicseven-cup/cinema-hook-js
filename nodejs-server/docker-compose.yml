@@ -1,8 +1,14 @@
-service:
+services:
   nodejs-server:
-    image: node:apline3.19
-    command: node server.js
+    image: node:latest
+    command: node /temp/server.js
+    volumes:
+    - .:/temp/
   nodejs-client:
-    image: node:apline3.19
-    command: node client.js
-    depends_on: nodejs-server
+    image: node:latest
+    command: node /temp/client.js
+    volumes:
+    - .:/temp/
+    restart: always
+    depends_on: 
+    -  nodejs-server
