@@ -1,17 +1,15 @@
 const http = require('node:http');
 const url = require('node:url');
 
-
-
 const port = 3000;
 const mockDB = new Set();
 
 async function webhookRespond(endpoint){
 	const message = "Hello Earth";
 	const options = {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		mode: "cors", // no-cors, *cors, same-origin
-		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+		method: "POST", 
+		mode: "cors", 
+		cache: "no-cache", 
 		headers: {
 			"Content-Type": "text/plain",
 		},
@@ -22,10 +20,13 @@ async function webhookRespond(endpoint){
 
 
 const s = http.createServer(function (req, res) {
+	console.log("Request is here");
 	const url = req.url;
+	console.log(url);
 	const requestMethod = req.method;
 	// Creating Webhook endpoint
 	if (url == '/create' && requestMethod == 'POST'){
+		console.log("The creation request is here");
 		let body = '';
 		req.on('data', (bytes) => {
 			body += bytes;
