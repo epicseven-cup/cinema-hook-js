@@ -1,0 +1,8 @@
+service:
+  nodejs-server:
+    image: node:apline3.19
+    command: node server.js
+  nodejs-client:
+    image: node:apline3.19
+    command: node client.js
+    depends_on: nodejs-server
