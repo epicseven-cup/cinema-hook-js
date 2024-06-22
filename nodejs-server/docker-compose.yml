@@ -4,11 +4,10 @@ services:
     command: node /temp/server.js
     volumes:
     - .:/temp/
+    ports:
+    - '3000:3000'
   nodejs-client:
     image: node:latest
-    command: node /temp/client.js
+    command: node /temp/client-server.js
     volumes:
     - .:/temp/
-    restart: always
-    depends_on: 
-    -  nodejs-server

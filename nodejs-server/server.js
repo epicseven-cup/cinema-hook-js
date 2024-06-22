@@ -8,7 +8,6 @@ async function webhookRespond(endpoint){
 	const message = "Hello Earth";
 	const options = {
 		method: "POST", 
-		mode: "cors", 
 		cache: "no-cache", 
 		headers: {
 			"Content-Type": "text/plain",
@@ -40,11 +39,16 @@ const s = http.createServer(function (req, res) {
 		});
 	}
 	// Send request to all the webhook endpoint that was given by the user
+	// res.writeHead(200, { 'Content-Type': 'text/plain' });
+	// res.end(`Hello default respond`);
+
+}).listen(port);
+
+setInterval(() => {
 	for (const endpoint of mockDB){
 		console.log(`Endpoint: ${endpoint}`);
 		webhookRespond(endpoint);
 	}
-}).listen(port);
-
+}, 500);
 console.log("Node server is up");
-while (true){}
+// while (true){}
