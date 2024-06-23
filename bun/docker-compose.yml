@@ -1,0 +1,13 @@
+services:
+  server:
+    image: oven/bun:latest
+    volumes:
+    - .:/temp/
+    ports:
+    - '3000:3000'
+    command: bun run /temp/server.ts
+  client:
+    image: oven/bun:latest
+    volumes:
+    - .:/temp/
+    command: bun run /temp/client.ts
